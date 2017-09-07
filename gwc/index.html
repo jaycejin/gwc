@@ -20,45 +20,27 @@
             <p>购物车<span>(112)</span></p>
             <b>编辑</b>
         </header>
-        <main class="main">
+        <main class="main" id="app">
             <div class="title">
                 <span class="iconfont icon-lingsheng"></span>
                 <p>我的天猫超市卡可用余额：79.8元，在天猫APP可使用超市卡结算哦！</p>
                 <span class="iconfont icon-guanbi-01"></span>
             </div>
-            <div class="tops">
+            <div class="tops" v-for="data in datas">
                 <h6 class="t_top">
                     <span class="sp"></span>
-                    <p>一说科技<span class="iconfont icon-youjiantou-01"></span></p>
+                    <p>{{data.title}}<span class="iconfont icon-youjiantou-01"></span></p>
                 </h6>
-                <div class="center">
+                <div class="center" v-for="item in data.list">
                     <div class="yuan">
                         <span class="sp"></span>
                     </div>
                     <div class="img">
-                        <img src="img/images/1_03.jpg" alt="">
-                    </div>
-                    <div class="txt">
-                        <p><span>一说智能机器人S1儿童陪伴机器人玩具故事</span><span></span></p>
-                        <p><span>￥898￥1280</span><span>x1</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="tops" id="app">
-                <h6 class="t_top">
-                    <span class="sp"></span>
-                    <p>一说科技<span class="iconfont icon-youjiantou-01"></span></p>
-                </h6>
-                <div class="center" v-for="data in datas">
-                    <div class="yuan">
-                        <span class="sp"></span>
-                    </div>
-                    <div class="img">
-                        <img v-bind:src="data.img" alt="">
+                        <img v-bind:src="item.img" alt="">
                     </div>
                     <div class="txt bb">
-                        <p><span>{{data.txt}}</span><span></span></p>
-                        <p><span>{{data.price}}</span><span>x1</span></p>
+                        <p><span>{{item.txt}}</span><span></span></p>
+                        <p><span>{{item.price}}</span><span>x1</span></p>
                     </div>
                 </div>
             </div>
@@ -95,6 +77,7 @@
                 $.ajax({
                     url: "http://localhost:8089",
                     success: function(data) {
+                        console.log(data.er.list)
                         _me.datas = data;
                     }
                 })
