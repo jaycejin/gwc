@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 320 * 100 + "px"
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header">
+            <b></b>
+            <p>消息</p>
+            <span class="iconfont icon-jia"></span>
+        </header>
+        <main class="main">
+            <div class="search">
+                <button>搜索</button>
+            </div>
+            <div class="big" id="app">
+                <div class="list" v-for="data in data">
+                    <dl>
+                        <dt><span></span></dt>
+                        <dd>
+                            <p><span>{{data.name}}</span><span>{{data.time}}</span></p>
+                            <p>{{data.text}}</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p class="on"><i class="iconfont icon-xiaoxi"></i><span>消息</span></p>
+            <p><i class="iconfont icon-wode"></i><span>联系人</span></p>
+            <p><i class="iconfont icon-pingfen"></i><span>动态</span></p>
+        </footer>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                data: ""
+            },
+            methods: {
+                aj() {
+                    var me = this;
+                    console.log(me)
+                    $.ajax({
+                        url: "http://127.0.0.1:9099/data",
+                        method: 'GET',
+                        success: function(data) {
+                            me.data = data;
+                        }
+                    });
+                }
+            },
+            mounted() {
+                this.aj();
+            }
+        })
+    </script>
+</body>
+
+</html>
