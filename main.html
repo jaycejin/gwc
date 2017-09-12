@@ -1,0 +1,190 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .app {
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        .app div {
+            height: 40px;
+            width: 300px;
+            border: 1px solid #ccc;
+        }
+        
+        .app p {
+            height: 30px;
+            width: 300px;
+            font-size: 13px;
+        }
+        
+        .app div label {
+            font-size: 13px;
+            width: 70px;
+            height: 40px;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .app div input {
+            width: 230px;
+            height: 40px;
+            border: none;
+            outline: none;
+        }
+        
+        .app div select {
+            height: 40px;
+            width: 100px;
+            border: none;
+        }
+        
+        .app button {
+            height: 40px;
+            width: 300px;
+            background: red;
+            border: none;
+            outline: none;
+            color: #FFFFFF;
+        }
+        
+        .dong {
+            margin-top: 10px;
+        }
+        /* .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+        
+        .fade-enter-active {
+            transition: all 2s ease;
+        }
+        
+        .fade-enter-to,
+        .fade-leave {
+            opacity: 1;
+        }
+        
+        .fade-leave-active {
+            transition: all 2s ease;
+        } */
+        
+        .default {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="app">
+
+    </div>
+    <template id="tem">
+        <div class="app">
+            <trane></trane>
+        </div>
+    </template>
+    <template id="trans">
+        <ul>
+            <transition @before-enter = "beforeEnter" @enter="enter" @before-leave = "beforeLeave" @leave="leave" appear mode="out-in"> 
+                <li v-if="start">
+                        <div><label for="user">用户名</label><input type="text" id="user" v-model="use"></div>
+                        <p></p>
+                        <div><label for="pass">设置密码</label><input type="password" v-model="paw" id="pass" placeholder="建议之后搜啊"></div>
+                        <p></p>
+                        <div><label for="sure">确认密码</label><input type="text" id="sure" v-model="agin"></div>
+                        <p></p>
+                        <div><select name="" id="msg">
+                            <option value="zhongguo">sss</option>
+                            <option value="zhong">6666</option>
+                        </select></div>
+                        <p></p>
+                        <div><label for="login">验证码</label><input type="text" id="login" v-model="agin"></div>
+                        <p></p>
+                        <div><label for="phone">手机验证码</label><input type="text" id="phone" v-model="agin"></div>
+                        <p></p>
+                </li>
+            </transition> 
+                <button @click="fn">立即注册</button>
+                <button class="dong" @click="dongs">动画</button>
+        </ul>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            template: "#tem",
+            data: {
+                use: "",
+                paw: "",
+                agin: "",
+            },
+            components: {
+                trane: {
+                    template: "#trans",
+                    data() {
+                        return {
+                            use: "",
+                            paw: "",
+                            agin: "",
+                            start: true,
+                            // el: this.el
+                        }
+                    },
+                    methods: {
+                        fn() {
+                            console.log(this.use)
+                            console.log(this.paw)
+                            console.log(this.agin)
+                        },
+                        dongs() {
+                            this.start = !this.start;
+                        },
+                        beforeEnter(el) {
+                            // console.log("bE")
+                            // el.style.opcity = 0;
+                        },
+                        enter(el, done) {
+                            console.log("en")
+                            Velocity(el, {
+                                opacity: 1,
+                            }, {
+                                duration: 500,
+                                complete: done
+                            })
+                        },
+                        beforeLeave(el) {
+                            console.log("bL")
+                            el.style.opcity = 1;
+                        },
+                        leave(el, done) {
+                            console.log("le")
+                            Velocity(el, {
+                                opacity: 0,
+                            }, {
+                                duration: 500,
+                                complete: done
+                            })
+                        }
+                    }
+                }
+            },
+
+        })
+    </script>
