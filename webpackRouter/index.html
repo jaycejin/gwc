@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 320 * 100 + "px";
+    </script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="app">
+        <header class="header">
+            <i class="iconfont icon-youxiang1"></i>
+            <p><input type="" name="" value=""></p>
+            <div><span class="iconfont icon-faxiandingdan"></span><span class="iconfont icon-tijiaodingdan"></span></div>
+        </header>
+        <main class="main">
+            <router-view></router-view>
+        </main>
+        <footer class="footer">
+            <router-link to="index" tag="p">首页</router-link>
+            <router-link to="my" tag="p">我听</router-link>
+            <router-link to="find" tag="p">发现</router-link>
+            <router-link to="mei" tag="p">未登录</router-link>
+        </footer>
+    </div>
+</body>
+
+</html>
